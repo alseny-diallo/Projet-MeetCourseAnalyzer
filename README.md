@@ -33,6 +33,7 @@ A la fin de la séance, le module enverra dans la base de données à travers de
 ### Comment ça marche ?: Etapes de Contribution au projet
 
 1. Importer le repository dans son espace de travail:
+
    git clone https://github.com/alseny-diallo/Projet-MeetCourseAnalyzer.git
   
 2. Creer une branche (ne pas travailler directement sur la branche principale **Master**).
