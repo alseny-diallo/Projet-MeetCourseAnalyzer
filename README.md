@@ -34,29 +34,29 @@ A la fin de la séance, le module enverra dans la base de données à travers de
 
 1. Importer le repository dans son espace de travail:
 
-  git clone https://github.com/alseny-diallo/Projet-MeetCourseAnalyzer.git
+   git clone https://github.com/alseny-diallo/Projet-MeetCourseAnalyzer.git
   
 2. Creer une branche (ne pas travailler directement sur la branche principale **Master**).
 
-  git branch ma-branche
+   git branch ma-branche
   
 3. Se positionner sur sa branche.
 
-  git checkout ma-branche
+    git checkout ma-branche
   
 4. Commiter les modifications ainsi que les nouvelles fonctionnalités ajoutées.
 
-  git commit -m "message du commit"
+   git commit -m "message du commit"
   
 5. Rapatrier le travail dans la branche master.
 
-  git merge ma-branche
+   git merge ma-branche
   
 6. Envoyer le code sur le depot github (Apres validation des membres).
 
-  git push origin master
+    git push origin master
   
 7. Mettre a jour son depot local.
 
-  git pull origin master
+    git pull origin master
   
