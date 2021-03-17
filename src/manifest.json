@@ -1,0 +1,32 @@
+{
+    "name" : "Google_Meet_Cours_Analyser",
+    "description" : "Il s’agit d’un plugin pour le navigateur google chrome, qui permettra, après authentification du professeur et du choix de la classe et de la matière, de détecter la liste des présents et alimenter la base de données pour la séance en cours",
+    "permissions" : ["storage"],
+    "manifest_version" : 2,
+    "version" : "1.0.0",
+    "author" : ["Mady", "Idrissa", "Alseny", "Khadim Fall", "Emmanuel"],
+    "background" : {
+        "scripts" : ["js/background.js"]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "",
+            "strict_min_version": "57.0"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://meet.google.com/*"
+            ],
+            "css": [
+                "css/styles.css"
+            ],
+            "js": [
+                ""
+            ],
+            "run_at": "document_idle",
+            "all_frames": false
+        }
+    ]
+}
