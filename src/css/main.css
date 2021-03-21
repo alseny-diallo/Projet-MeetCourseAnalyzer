@@ -1,0 +1,18 @@
+body{
+    width: 425px;
+    height: 100px;
+    min-height: 500px ;
+    margin: 0;
+}
+.title{
+    background-color: #222222;
+    width: 100%;
+    pad: 5px;
+}
+
+.title >h4{
+    color: white;
+    font-weight: 100;
+    margin: 0;
+
+}

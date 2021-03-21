@@ -1,32 +1,48 @@
 {
-    "name" : "Google_Meet_Cours_Analyser",
+    "name" : "Google Meet Course Analyser",
     "description" : "Il s’agit d’un plugin pour le navigateur google chrome, qui permettra, après authentification du professeur et du choix de la classe et de la matière, de détecter la liste des présents et alimenter la base de données pour la séance en cours",
-    "permissions" : ["storage"],
+    "permissions" : ["storage", "webNavigation"],
     "manifest_version" : 2,
     "version" : "1.0.0",
-    "author" : ["Mady", "Idrissa", "Alseny", "Khadim Fall", "Emmanuel"],
+    "author" : ["Mady Camara", "Idrissa SOW", "Alseny Diallo", "Khadim Fall", "Emmanuel Diatta"],
     "background" : {
-        "scripts" : ["js/background.js"]
+        "scripts" : ["background/background.js"],
+        "persitent": true
     },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "",
-            "strict_min_version": "57.0"
-        }
-    },
+    "browser_action": {
+		"default_icon": {
+			"16": "icons/icon16.png",
+			"48": "icons/icon48.png",
+			"128": "icons/icon128.png"
+		},
+		"default_popup": "html/popup.html",
+		"default_title": "Google Meet Course Analyser"
+	},
+  	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png" 
+	},
+	"web_accessible_resources": [
+		"images/*.png"
+	],
     "content_scripts": [
         {
             "matches": [
                 "https://meet.google.com/*"
             ],
-            "css": [
-                "css/styles.css"
+            "browser_action": {
+                "default_icon": "icons/icon48.png" 
+            },
+            "js" : [ 
+                "script/test.js"
             ],
-            "js": [
-                ""
+            "css": [
+                "css/main.css"
             ],
             "run_at": "document_idle",
             "all_frames": false
         }
     ]
+    
 }
