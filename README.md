@@ -36,7 +36,7 @@ A la fin de la séance, le module enverra dans la base de données à travers de
 
    git clone https://github.com/alseny-diallo/Projet-MeetCourseAnalyzer.git
   
-2. Creer une branche (ne pas travailler directement sur la branche principale **Master**).
+2. Creer une branche (ne pas travailler directement sur la branche principale **main**).
 
    git branch ma-branche
   
@@ -48,15 +48,15 @@ A la fin de la séance, le module enverra dans la base de données à travers de
 
    git commit -m "message du commit"
   
-5. Rapatrier le travail dans la branche master.
+5. Rapatrier le travail dans la branche main.
 
    git merge ma-branche
   
 6. Envoyer le code sur le depot github (Apres validation des membres).
 
-    git push origin master
+    git push origin main
   
 7. Mettre a jour son depot local.
 
-    git pull origin master
+    git pull origin main
   
