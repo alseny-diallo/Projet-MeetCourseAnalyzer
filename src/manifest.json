@@ -4,7 +4,7 @@
     "permissions" : ["storage", "webNavigation"],
     "manifest_version" : 2,
     "version" : "1.0.0",
-    "author" : ["Mady Camara", "Idrissa SOW", "Alseny Diallo", "Khadim Fall", "Emmanuel Diatta"],
+    "author" : ["Mady CAMARA", "Idrissa SOW", "Alseny DIALLO", "Khadim FALL", "Emmanuel DIATTA"],
     "background" : {
         "scripts" : ["background/background.js"],
         "persitent": true
