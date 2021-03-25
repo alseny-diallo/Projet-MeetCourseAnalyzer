@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infos meet</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="form.css">
+</head>
+<body style=" background-color: antiquewhite;">
+
+	<div class="col-md-8 ml-auto mr-auto card border-dark mb-3" style="position: static;">
+    <div class="padding">
+      <div class="container text-center card-header mr-auto ml-auto" style="background-color: #9400D3;"> 
+        <h2>Infos</h2>
+      </div>
+		  <div class="formulaire form-inline" style="margin-bottom: 5px; margin-top: 5px;">
+				<form method="POST" action="" style="margin-left:auto; margin-right:auto;">
+					<div class="form-inline">
+					<div>
+						<select required="" id="classe">
+							<option style="color: #6B2277;" value="">Choisisser les infos de la classe</option>
+			  			<option onClick="matiere();" value="dsti1">DSTI1</option>
+			  			<option onClick="matiere();" value="dsti2">DSTI2</option>
+			 		 		<option onClick="matiere();" value="dut1">DUT1</option>
+			  			<option onClick="matiere();" value="dut2">DUT2</option>
+			  			<option onClick="matiere()" value="licence">Licence</option>
+			  			<option onClick="matiere()" value="master1">Master 1</option>
+			  			<option onClick="matiere()" value="master2">Master 2</option>
+			  			<option onClick="matiere()" value="dic1">DIC1</option>
+			  			<option onClick="matiere()" value="dic2">DIC2</option>
+			  			<option onClick="matiere()" value="dic3">DIC3</option>
+						</select>
+					</div>
+
+					<div id="matiereList">
+					</div>
+					</div>
+					<br/>
+					<div id="infos" class="col-md-12 ml-auto mr-auto card border-light mb-3 hidden" style="position: static;">
+				    <div class="padding">
+				      <div class="container text-center card-header mr-auto ml-auto" style="background-color: #9400D3;"> 
+				        <h2>Conference</h2>
+				      </div>
+							<div>
+								<p><span style="font-weight:bold; text-decoration: underline;">Id</span> : </p>
+								<p><span style="font-weight:bold; text-decoration: underline;">Nom</span> : </p>
+								<p><span style="font-weight:bold; text-decoration: underline;">Email organisateur</span> : </p>
+						    <div class="padding">
+						      <div class="container text-center card-header mr-auto ml-auto" style="background-color: #9400D3;"> 
+						        <h2>Participant</h2>
+						      </div>
+									<select class="form-select" size="3" aria-label="size 3 select example" style="width: 100%; margin-left:auto; margin-right:auto;">
+									  <option value="1">Khadim fall</option>
+									  <option value="2">idy sow</option>
+									  <option value="3">Three</option>
+									  <option value="3">four</option>
+								</div>
+								<button class='btn btn-outline-secondary add-btn'>Valider</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="form.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
