@@ -1,3 +1,4 @@
 #dependences
 backend/node_modules/
 backend/package*.json
+backend/dbconnexion.js
