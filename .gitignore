@@ -1,4 +1,4 @@
 #dependences
-backend/node_modules/
-backend/package*.json
-backend/dbconnexion.js
+src/backend/node_modules/
+src/backend/package*.json
+src/backend/dbconnexion.js
