@@ -29,6 +29,7 @@
             <thead>
                 <tr>
                     <th>Numero</th>
+                    <th>Sceance</th>
                     <th>Prenom</th>
                     <th>Nom</th>
                     <th>Nombre Connexion</th>
@@ -39,18 +40,19 @@
             </thead>
            <tbody>
                <% if(resultat.length != 0){
-                   for (date of resultat) {%>
+                   for (data of resultat) {%>
                 <tr>
-                    <td><%=date.idEtudiant %> </td>
-                    <td><%=date.prenom %> </td>
-                    <td><%=date.nom %> </td>
-                    <td><%=date.nombreConnexion %></td>
-                    <td><%=date.nombreDeconnexion %></td>
-                    <td><%=date.email %></td>
-                    <td><%=date.region %></td>
+                    <td><%=data.idEtudiant %> </td>
+                    <td><%=data.numeroSeance %> </td>
+                    <td><%=data.prenom %> </td>
+                    <td><%=data.nom %> </td>
+                    <td><%=data.nombreConnexion %></td>
+                    <td><%=data.nombreDeconnexion %></td>
+                    <td><%=data.email %></td>
+                    <td><%=data.region %></td>
                 </tr>     
                 <%}%>
-                <% } else{%>
+                <% } else{%>        
                     <tr>
                         <td>No data found</td>
                         <td>No data found</td>
