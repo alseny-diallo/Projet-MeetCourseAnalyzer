@@ -27,7 +27,7 @@ let matiereList = [
 		'UML',
 		'POO']];
 
-var selectElmt;
+let selectElmt;
 let classe;
 
 
