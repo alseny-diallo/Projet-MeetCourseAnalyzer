@@ -6,20 +6,20 @@
     "version" : "1.0.0",
     "author" : ["Mady CAMARA", "Idrissa SOW", "Alseny DIALLO", "Khadim FALL", "Emmanuel DIATTA"],
     "background" : {
-        "scripts" : ["public/background/background.js"],
+        "scripts" : ["src/public/background/background.js"],
         "persitent": true
     },
     "browser_action": {
-		"default_popup": "public/html/popup.html",
+		"default_popup": "src/public/html/popup.html",
 		"default_title": "Google Meet Course Analyser"
 	},
   	"icons": {
-		"16": "public/icons/icon16.png",
-		"48": "public/icons/icon48.png",
-		"128": "public/icons/icon128.png" 
+		"16": "src/public/icons/icon16.png",
+		"48": "src/public/icons/icon48.png",
+		"128": "src/public/icons/icon128.png" 
 	},
 	"web_accessible_resources": [
-		"public/images/*permission.png"
+		"src/public/images/*permission.png"
 	],
     "content_scripts": [
         {
@@ -27,7 +27,7 @@
                 "*://localhost:*/*", "*://meet.google.com/*"
             ],
             "css": [
-                "public/css/main.css"
+                "src/public/css/main.css"
             ],
             "run_at": "document_idle",
             "all_frames": false
