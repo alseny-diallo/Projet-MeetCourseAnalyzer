@@ -10,7 +10,6 @@
         "persitent": true
     },
     "browser_action": {
-        "default_icon": "public/icons/icon48.png",
 		"default_popup": "public/html/popup.html",
 		"default_title": "Google Meet Course Analyser"
 	},
@@ -25,7 +24,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://localhost:*/*","*://meet.google.com/*"
+                "*://localhost:*/*", "*://meet.google.com/*"
             ],
             "css": [
                 "public/css/main.css"

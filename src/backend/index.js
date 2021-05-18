@@ -11,6 +11,7 @@ dotenv.config({path : './.env'});
 
 const auth = require('./routes/auth');
 const mailing = require('./routes/mailing');
+const liste = require('./routes/liste');
 const dbconnect = require('./routes/dbconnect');
 
 //middlewares
@@ -31,6 +32,7 @@ app.get('/', (req, res) =>{
 });    
 app.use('/auth', auth);
 app.use('/mailing', mailing);
+app.use('/liste', liste);
     
 
 //port listening
