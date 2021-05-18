@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.navbar
+{
+    width: 100%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: hsl(187, 53%, 94%);
+}
+.fas
+{
+    width: 120px;
+    font-size: 40px;
+    color: #189bcf;
+    line-height: 20px;
+    margin-left:  -1px;;
+    cursor: pointer;
+}
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color:#189bcf;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.navbar ul li::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li:hover::after{
+    width: 100%;
+}
+.navbar i{
+    margin-left: 0.6em;
+}
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #189bcf;
+}
+.content h1{
+    font-size: 70px;
+    margin-top: 80px;
+}
+.content p{
+    margin: 20px auto;
+    font-weight: 100px;
+    line-height: 25px;
+}
+h3{
+    margin-top: 2em;
+    margin-bottom: 3em;
+    color: #189bcf;
+    text-align: center;
+    text-transform: uppercase; 
+}
+#chart-container{
+    margin:auto;
+    padding: auto;
+    width: 700px;
+    
+}
+#note,#absence,#connection{
+    display: none;
+}
