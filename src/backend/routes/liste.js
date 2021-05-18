@@ -4,7 +4,7 @@ const controller = db.dbConnect;
 
 const router = express.Router();
 
-app.get('/',(req,res)=>{
+router.get('/',(req,res)=>{
 
     controller.query('SELECT * FROM Etudiant',(error,result) => {
         if (error)  throw error;

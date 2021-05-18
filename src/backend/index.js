@@ -1,8 +1,6 @@
 //modules
 const express = require('express');
 const app = express();
-//const mysql = require('mysql');
-//const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
@@ -21,9 +19,8 @@ app.use(cors());
 app.use(morgan('dev'));
 
 //template engine
-app.set('views', __dirname + '/html');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '../src'));
 
 //routes
 app.use('/',dbconnect);
