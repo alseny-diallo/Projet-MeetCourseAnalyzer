@@ -6,14 +6,16 @@ const router = express.Router();
 
 const dbConnect = mysql.createConnection({
   host: process.env.HOST,
+  port : process.env.DB_PORT,
   user: process.env.USER,
   password: process.env.PASSWORD,
-  database: process.env.DATABASE 
+  database: process.env.DATABASE,
+  insecureAuth: true
 });
 
 dbConnect.connect( (err) => {
   if (err) {
-    console.error('Erreur de connection! '+ err.stack);
+    console.error('Erreur de connection! '+ err.message);
     return;
 }
   console.log("Connected");
