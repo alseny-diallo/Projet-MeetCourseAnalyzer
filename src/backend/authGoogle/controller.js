@@ -8,7 +8,7 @@ let seances = [];
 let events;
 let trouve = false;
 let seanceExiste = false;
-let connection = require("../model/dbconnexion");
+//let connection = require("../Model/dbConnect");
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/admin.reports.audit.readonly', 'https://www.googleapis.com/auth/admin.reports.usage.readonly'];
@@ -73,7 +73,7 @@ function getNewToken(oauth2Client, callback) {
       oauth2Client.credentials = token;
       storeToken(token);
       callback(oauth2Client);
-    });
+    }); 
   });
 }
 /**
@@ -99,7 +99,7 @@ function listLoginEvents(auth) {
     userKey: 'all',
     applicationName: 'meet',
     eventName: 'call_ended'
-  }, (err, res) => {
+  }, (err, res) => {Controller.listLoginEvents
     if (err) return console.error('The API returned an error:', err.message);
     const activities = res.data.items;
     if (activities.length) {
