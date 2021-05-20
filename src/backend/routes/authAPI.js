@@ -3,6 +3,6 @@ const Controller = require('../authGoogle/controller');
 
 const router = express.Router();
 
-router.get('/', Controller.listLoginEvents);
+router.get('/api', Controller.listLoginEvents);
 
 module.exports = router;

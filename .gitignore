@@ -2,3 +2,4 @@
 src/backend/node_modules
 src/backend/.env*
 src/backend/api.http
+src/backend/authGoogle/token.json

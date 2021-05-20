@@ -8,7 +8,6 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config({path : './.env'});
 
-
 const auth = require('./routes/auth');
 const mailing = require('./routes/mailing');
 const liste = require('./routes/liste');
@@ -28,7 +27,7 @@ app.set('view engine', 'ejs');
 //routes
 app.use('/',dbconnect);
 app.get('/', (req, res) =>{
-    res.send('Welcome to server!')    
+    res.send('Welcome to server!');
 });    
 app.use('/auth', auth);
 app.use('/mailing', mailing);
