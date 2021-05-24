@@ -1,10 +1,11 @@
-const controller = require("./controller");
+let {SCOPES, listLoginEvents, authorize, participants, seance, monCredentials} = require("./controller");
 const express = require('express');
 const app = express();
 //let router = express.Router()
-//router.get("/",controller.listLoginEvents)
-const port = 5000;
-const listLoginEvents = controller.listLoginEvents
+/*
+app.listen(8080);
+app.get("/", listLoginEvents)
 module.exports = {
     listLoginEvents
 }
+*/
