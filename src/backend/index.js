@@ -1,3 +1,4 @@
+//server expressjs (backend)
 //modules
 const express = require('express');
 const app = express();
@@ -30,11 +31,10 @@ app.get('/', (req, res) =>{
 app.use('/auth', auth);
 app.use('/mailing', mailing);
 app.use('/liste', liste);
-app.use('/api', api);
+//app.use('/api', api);
 
 
-//port listening
-
+// config port d'écoute
 let port = process.env.PORT;
 
 app.listen(port, (err) => { 
