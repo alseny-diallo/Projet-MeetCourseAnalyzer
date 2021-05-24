@@ -76,7 +76,7 @@ function getNewToken(oauth2Client, callback) {
       oauth2Client.credentials = token;
       storeToken(token);
       callback(oauth2Client);
-    });
+    }); 
   });
 }
 /**
