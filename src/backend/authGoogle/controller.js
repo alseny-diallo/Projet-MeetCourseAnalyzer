@@ -1,14 +1,14 @@
-const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
+const fs = require('fs');
 let seance = Object();
 let participant = Object();
 let participants = [];
-let seances = [];
 let events;
 let trouve = false;
-let seanceExiste = false;
-let connection = require("../Model/dbConnect");
+let monCredentials;
+let url;
+//let connection = require("../Model/dbConnect");
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/admin.reports.audit.readonly', 'https://www.googleapis.com/auth/admin.reports.usage.readonly'];
@@ -24,7 +24,8 @@ fs.readFile('credentials.json', (err, content) => {
   // Authorize a client with the loaded credentials, then call the
   // Reports API.
   authorize(JSON.parse(content), listLoginEvents);
-  //monCredentials = JSON.parse(content);
+  // recuperation des identifiants
+  monCredentials = JSON.parse(content);
 });
 
 /**
@@ -61,6 +62,8 @@ function getNewToken(oauth2Client, callback) {
     access_type: 'offline',
     scope: SCOPES, 
   });
+  // Recuperation de l'url d'authentification
+  url = authUrl;
   console.log('Authorize this app by visiting this url:', authUrl);
   const rl = readline.createInterface({
     input: process.stdin,
@@ -98,28 +101,43 @@ function listLoginEvents(auth) {
   service.activities.list({
     userKey: 'all',
     applicationName: 'meet',
-    eventName: 'call_ended'
+    eventName: 'call_ended',
   }, (err, res) => {
-    if (err) return console.error('The API returned an error:', err.message);
+    if (err){
+      //Dans le cas ou le token expire je le supprime 
+      if(err.message === 'No refresh token is set.'){
+        console.log('Token danan a renouvener');
+        // suppression du token
+        fs.unlink(`${TOKEN_PATH}`, (err) => {
+          if(err) return console.log('impossible');
+          // On redemande l'accès 
+          authorize(monCredentials, listLoginEvents);
+        });
+        console.log('le fichier token a ete supprimer avec succes');
+      }
+      return console.error('The API returned an error:', err.message);
+    }
     const activities = res.data.items;
+    const premier = activities[0].events[0];
     if (activities.length) {
+      //Recuperation de la derniere conference
+      seance.partage = false;  
+      seance.dateFin = filtreDateHeureFin(activities[0].id.time, 'date');
+      seance.heureFin = filtreDateHeureFin(activities[0].id.time, 'heure');
+      for(let i = 0; i < activities[0].events[0].parameters.length; i++){
+        if(premier.parameters[i].name === 'conference_id'){
+          seance.id = premier.parameters[i].value;
+        }
+      }
       activities.forEach((activity) => {
         events = activity.events[0];
         participant.nbConnexion = 1;
         participant.duree = 0;
+        //Recuperation du participant
         for(let i = 0; i < events.parameters.length; i++){
-          // conference
           if(events.parameters[i].name === 'conference_id'){
-            seance.id = events.parameters[i].value;
             participant.conference = events.parameters[i].value;
           }
-          if(events.parameters[i].name === 'calendar_event_id'){
-            seance.calendrier = events.parameters[i].value;
-          }
-          if(events.parameters[i].name === 'video_send_seconds'){
-            seance.partage = parseInt(events.parameters[i].intValue);
-          }
-          // participant
           if(events.parameters[i].name === 'endpoint_id'){
             participant.IdConnexion = events.parameters[i].value;
           }
@@ -135,30 +153,26 @@ function listLoginEvents(auth) {
           if(events.parameters[i].name === 'location_region'){
             participant.region = events.parameters[i].value;
           }
+          //Si le participant a partager son ecran 
+          if(events.parameters[i].name === 'video_send_seconds' && participant.conference === seance.id && events.parameters[i].intValue > 0){
+            console.log(events.parameters[i].intValue);
+            seance.partage = true;
+          }
         }
+        //Si le participant existe deja on modifie son nombre et sa duree de connexion
         for(let j = 0; j < participants.length; j++){
           if(participants[j].conference === participant.conference && participants[j].email === participant.email){
             trouve = true;
             participants[j].nbConnexion++;
-            participants[j].duree+=participant.duree;
+            participants[j].duree += participant.duree;
           }
         }
-        for(let k = 0; k < seances.length; k++){
-          if(seances[k].id === seance.id){
-            seanceExiste = true;
-            seances[k] += seance.partage;
-          }
-        }
-        if(!trouve){
+        if(!trouve && participant.conference === seance.id){
           ajoutParticipant(participant.conference ,participant.nbConnexion, participant.IdConnexion, participant.duree, participant.terminal, participant.email, participant.region);
         }
-        if(!seanceExiste){
-          ajoutConference(seance.id, seance.calendrier, seance.partage);
-        }
         trouve = false;
-        seanceExiste = false;
       });
-      console.log(seances);
+      console.log(seance);
       console.log(participants);
     } else {
       console.log('Pas de meet trouvé.');
@@ -181,21 +195,25 @@ function ajoutParticipant(conference, nbConnexion, IdConnexion, duree, terminal,
 }
 
 /**
- * Fonction pour recuperer les seances
- * @param {chaine} id identifiant de la conference
- * @param {chaine} calendrier identifiant du google calendar
- * @param {entier} partage le temps de partage d'ecran (Vrai si > 0 Faux si = 0)
+ * Fonction pour recuperer la date ou l'heure de fin
+ * @param {chaine} date date et l'heure de fin envoye par l'api
+ * @param {chaine} quoi qu'est ce que je dois envoye?
  */
-function ajoutConference(id, calendrier, partage){
-  seances.push({id, calendrier, partage});
+function filtreDateHeureFin(date, quoi){
+  if(quoi === 'date')
+    return date.slice(0, 10);
+  else
+    return date.slice(11, date.length-1);
 }
-
+// Exportation des fonctions et variable
 module.exports = {
   SCOPES,
   listLoginEvents,
   authorize,
   participants,
-  seances
+  seance,
+  monCredentials,
+  url
 };
 
 //eventName: 'livestream_watched'
