@@ -3,7 +3,6 @@ const express = require('express');
 
 const router = express.Router();
 
-
 const dbConnect = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,

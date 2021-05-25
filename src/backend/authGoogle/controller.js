@@ -138,6 +138,9 @@ function listLoginEvents(auth) {
           if(events.parameters[i].name === 'conference_id'){
             participant.conference = events.parameters[i].value;
           }
+          if(events.parameters[i].name === 'display_name'){
+            participant.nomComplet = events.parameters[i].value;
+          }
           if(events.parameters[i].name === 'endpoint_id'){
             participant.IdConnexion = events.parameters[i].value;
           }
@@ -168,7 +171,7 @@ function listLoginEvents(auth) {
           }
         }
         if(!trouve && participant.conference === seance.id){
-          ajoutParticipant(participant.conference ,participant.nbConnexion, participant.IdConnexion, participant.duree, participant.terminal, participant.email, participant.region);
+          ajoutParticipant(participant.conference ,participant.nomComplet, participant.nbConnexion, participant.IdConnexion, participant.duree, participant.terminal, participant.email, participant.region);
         }
         trouve = false;
       });
@@ -190,8 +193,8 @@ function listLoginEvents(auth) {
  * @param {chaine} email adresse email utilise
  * @param {chaine} region la region de connexion
  */
-function ajoutParticipant(conference, nbConnexion, IdConnexion, duree, terminal, email, region){
-  participants.push({conference, nbConnexion, IdConnexion, duree, terminal, email, region});
+function ajoutParticipant(conference, nom, nbConnexion, IdConnexion, duree, terminal, email, region){
+  participants.push({conference, nom, nbConnexion, IdConnexion, duree, terminal, email, region});
 }
 
 /**
