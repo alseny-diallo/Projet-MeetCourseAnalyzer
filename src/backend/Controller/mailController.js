@@ -1,8 +1,6 @@
 //Controller mailing
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
-const hbs = require('nodemailer-express-handlebars');
-
 const db = require('../Model/dbConnect');
 const controller = db.dbConnect;
 
@@ -10,6 +8,9 @@ const controller = db.dbConnect;
 exports.sendMail = (req,res) => {
 
 //récupération des emails
+
+    let mail = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Document</title></head><body><h1>Bienvenue !</h1><div><p>Voici ci-dessous le lien vers le formulaire à remplir :</p><a href="https://formulairee.herokuapp.com/" target="_blank">formulaire d\'évaluation</a></div></body></html>'
+
     let students = [];
 
     controller.query('SELECT email FROM Etudiant', (err, result) => {
@@ -40,28 +41,15 @@ exports.sendMail = (req,res) => {
         }
     }
 
-    const handlebarOptions = {
-        viewEngine: {
-            extName: '.handlebars',
-            layoutsDir: './Controller/',
-            defaultLayout: 'mail',
-        },
-        viewPath: './Controller/',
-        extName: '.handlebars'
-    };
-
     let mailOptions = {
       from: process.env.MAIL_FROM,
       to: students,
       subject: 'Formulaire d\'enquête! (avec recup mails bd) ',
-      template: 'mail'
+      html: mail
     };
 
 
-
     let transporter = nodemailer.createTransport(smtpTransport(options));
-
-    transporter.use('compile',hbs(handlebarOptions));
     
     
     transporter.sendMail(mailOptions, (error, info) => {
