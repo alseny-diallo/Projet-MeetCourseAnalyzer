@@ -3,7 +3,9 @@ const Controller = require('../authGoogle/controller');
 const router = express.Router();
 const db = require('../Model/dbConnect');
 const conn = db.dbConnect;
+
 let id;
+
 router.get('/api', Controller.listLoginEvents);
 
 //Sauvegarge de la seance et des participants

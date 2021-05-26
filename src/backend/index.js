@@ -10,7 +10,7 @@ dotenv.config({path : './.env'})
 const auth = require('./routes/auth')
 const mailing = require('./routes/mailing')
 const liste = require('./routes/liste')
-//const api = require('./routes/authAPI')
+const api = require('./routes/authAPI')
 const dbconnect = require('./routes/dbconnect')
 
 //middlewares
@@ -29,6 +29,8 @@ app.use('/',dbconnect)
 app.use('/auth', auth)
 app.use('/mailing', mailing)
 app.use('/liste', liste)
+app.use('/authAPI', api)
+app.use('/authAPI/save', api)
 
 app.get('/', (req, res) =>{
  res.send('Welcome to server!')
