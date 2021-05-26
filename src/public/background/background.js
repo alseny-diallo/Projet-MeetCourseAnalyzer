@@ -3,10 +3,17 @@ chrome.runtime.onInstalled.addListener(function(){
     alert("Merci d'avoir  mis à jour l'extension");
     });
 
- chrome.webNavigation.onCompleted.addListener(function(){
-    alert("Welcome to the Google Meet! ");
-    },
-    {
-        url: [{urlMatches:"meet.google.com"}]  
-    });
+let backgroundPage = chrome.extension.getBackgroundPage();
+
+chrome.runtime.onConnect.addListener(function(port) {
+
+    if (port.name === "popup") {
+
+        port.onDisconnect.addListener(function() {
+            let contentPage = document.body.innerHTML
+            localStorage.setItem('content',contentPage)
+            backgroundPage.console.log(localStorage.getItem('content'))
+        })
+    }
+})
 

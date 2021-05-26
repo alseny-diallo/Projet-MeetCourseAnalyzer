@@ -1,4 +1,9 @@
 //authentification
+
+if(localStorage.getItem('content') !== "") {
+   document.body.innerHTML = content
+}
+
   let form = document.getElementById('formulaire')
 
   form.addEventListener('submit', (e) => {
@@ -34,3 +39,5 @@
 
   .catch(error => console.error('Error:', error))
 })
+
+chrome.runtime.connect({ name: "popup" })
