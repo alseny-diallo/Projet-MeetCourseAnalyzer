@@ -2,7 +2,7 @@ const express = require('express');
 const Controller = require('../authGoogle/controller');
 const router = express.Router();
 const db = require('../Model/dbConnect');
-const conn = db.dbConnect;
+const conn = db.dbConnect;                                                                                                                                                                                                                                                                                                                      
 
 let id;
 
@@ -38,4 +38,4 @@ router.post('/save',(req, res) =>{
     }
 });
 
-module.exports = router;
+module.exports = router

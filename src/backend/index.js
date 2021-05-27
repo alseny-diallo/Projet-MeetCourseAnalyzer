@@ -29,7 +29,7 @@ app.use('/',dbconnect)
 app.use('/auth', auth)
 app.use('/mailing', mailing)
 app.use('/liste', liste)
-app.use('/authAPI', api)
+app.use('/authAPI/api', api)
 app.use('/authAPI/save', api)
 
 app.get('/', (req, res) =>{
