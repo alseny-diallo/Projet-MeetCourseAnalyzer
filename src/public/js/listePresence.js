@@ -17,9 +17,6 @@ function getCookie(cname) {
 	return null;
 }
 
-matiere = getCookie("matiere");
-classe = getCookie("classe");
-
 liste();
 
 console.log('_______****________ ');
@@ -27,26 +24,25 @@ console.log("Classe : "+classe);
 console.log("Matiere : "+matiere);
 
 function liste(){ //le code pour la liste des participants
+	let particicants = document.getElementsByClassName('ZjFb7c');
+	let aff = "";
+    for(let i = 0; i < particicants.length; i++){
+        aff += '<option value="'+i+'">'+particicants[i].innerText+'</option>'+;
+    }
   	let tableList = "";
-  	tableList += `
-  		<select class="form-select" size="20" aria-label="size 3 select example" style="width: 100%; margin-left:auto; margin-right:auto;">
-  			<option value="1">Khadim fall</option>
-			<option value="2">idy sow</option>
-			<option value="3">Three</option>
-			<option value="4">four</option>
-		</select> `;
-
+  	tableList += "<select class='form-select' size='20' aria-label='size 3 select example' style='width: 100%; margin-left:auto; margin-right:auto;'>"+aff"+</select>";
   	document.getElementById('list').innerHTML = tableList;
 
 }
 
 function refresh(){
 //le code pour rafraichir
-
+	liste();
 }
 
 function fin(){
 //le code pour apres avoir fini
-
+	matiere = getCookie("matiere");
+	classe = getCookie("classe");
 }
 

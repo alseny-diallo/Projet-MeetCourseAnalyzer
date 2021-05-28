@@ -15,14 +15,16 @@
 	},
   	"icons": {
 		"16": "src/public/icons/icon16.png",
-		"48": "src/public/icons/icon48.png",
+		"48": "src/public/icons/icon48.png", 
 		"128": "src/public/icons/icon128.png" 
 	},
 	"web_accessible_resources": [
-		"src/public/images/*permission.png"
+		"src/public/images/*permission.png"  
 	],
     "content_scripts": [
         {
+            "js":[ "src/public/js/content.js"],
+            
             "matches": [
                 "*://localhost:*/*", "*://meet.google.com/*"
             ],
