@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -47,6 +48,19 @@
     </script>
   </head>
   <body>
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./CSS/dashbord.css"/>
+    <title>Evaluation cours</title>
+</head>
+<body>
+    
+>>>>>>> a8af0fea9f6a98aa5273c572e1934767ef376242
     <nav class="navbar">
       <i class="fas fa-user-tie"></i>
       <ul>
@@ -67,6 +81,7 @@
       </p>
     </div>
     <div id="chart-container">
+<<<<<<< HEAD
       <div id="note">
         <h3>Evaluation de la note des seances</h3>
         <canvas id="mycanavas1"></canvas>
@@ -87,3 +102,53 @@
     <script type="text/javascript" src="js/note.js"></script>
   </body>
 </html>
+=======
+        <form method="POST" >
+            <div class="form-row" >
+                
+                <div class="form-group col-md-4" id="liste">
+                    <select id="classes" class="form-control" name="classes">
+                        <option  value="" selected>choisir classe</option>
+                        <option onClick="matiere();" value="dsti1">DSTI1</option>
+                        <option onClick="matiere();" value="dsti2">DSTI2</option>
+                        <option onClick="matiere();" value="dut1">DUT1</option>
+                        <option onClick="matiere();" value="dut2">DUT2</option>
+                        <option onClick="matiere();" value="licence">Licence 3</option>
+                        <option onClick="matiere();" value="master1">Master 1</option>
+                        <option onClick="matiere();" value="master2">Master 2</option>
+                        <option onClick="matiere();" value="dic1">DIC1</option>
+                        <option onClick="matiere();" value="dic2">DIC2</option>
+                        <option onClick="matiere();" value="dic3">DIC3</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4" id="matiereList">
+                    
+                </div>
+               <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-success" id="bouton">Valider</button>
+               </div>
+        </form>
+        <div id="note">
+            <h3>Evaluation de la note des seances</h3>
+            <canvas id="mycanavas1"></canvas>
+        </div>
+        <div id="absence">
+            <h3>Cumul des absences de chaque etudiant par semaine</h3>
+            <canvas id="mycanavas2"></canvas>
+        </div>
+        <div id="connection">
+            <h3>Evolution de la qualité des connexions de chaque etudiant</h3>
+            <canvas id="mycanavas3"></canvas>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="submit.js"></script>
+    <script type="text/javascript" src="js/dashbord.js"></script>
+    <script  type="text/javascript" src="js/jquery.min.js"></script>
+    <script  type="text/javascript" src="js/chart.min.js"></script>
+    <script  type="text/javascript" src="js/Connexion.js"></script>
+    <script  type="text/javascript" src="js/note.js"></script>
+    <script  type="text/javascript" src="js/Absence.js"></script>
+</body>
+</html>
+>>>>>>> a8af0fea9f6a98aa5273c572e1934767ef376242
