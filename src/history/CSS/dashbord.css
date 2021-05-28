@@ -3,7 +3,6 @@
     padding: 0;
     font-family: sans-serif;
 }
-
 .navbar
 {
     width: 100%;
@@ -75,12 +74,18 @@ h3{
     text-align: center;
     text-transform: uppercase; 
 }
+.form-row
+{
+    margin-top: 3em;
+}
+
 #chart-container{
     margin:auto;
     padding: auto;
     width: 700px;
     
 }
-#note,#absence,#connection{
+#note,#absence,#connection,#bouton,#form,#liste{
     display: none;
 }
+

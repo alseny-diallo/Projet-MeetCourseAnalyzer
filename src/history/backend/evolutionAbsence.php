@@ -1,5 +1,8 @@
 <?php
     include('./evolutionSeance.php');
-    $req = "select Etudiant.idEtudiant,prenom,nom,count(jour) as day from Etudiant join Absence on Etudiant.idEtudiant=Absence.idEtudiant where datediff(now(),jour)>=7 group by Absence.idEtudiant";
-    dataChart($req);
+    include('./session.php');
+    if (!empty($classe) and !empty($matiere)){
+        $req = "select Participant.idParticipant,nomComplet,jour from Participant join Absence on Participant.idParticipant=Absence.idParticipant where datediff(now(),jour)>=7;";
+        dataChart($req);
+    }    
 ?>

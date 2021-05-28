@@ -1,5 +1,8 @@
 <?php
     include('./evolutionSeance.php');
-    $req = "SELECT nomSeance,note FROM Formulaire  JOIN Seance ON Formulaire.idSeance = Seance.idSeance order by  Seance.nomSeance asc";
-    dataChart($req);
+    include('./session.php');
+    if (!empty($classe) and !empty($matiere)) {
+        $req = "SELECT Seance.idSeance as numSeance,note FROM Formulaire  JOIN Seance ON Formulaire.idSeance = Seance.idSeance WHERE classe ='$classe' and matiere = '$matiere' order by  Seance.matiere asc;";
+        dataChart($req);
+    }
 ?>

@@ -7,7 +7,7 @@ $(document).ready(function ()   {
             var seance = [];
             var notes  = [];
             for(var i in data){
-                seance.push("Seance "+data[i].nomSeance);
+                seance.push("Seance "+data[i].numSeance);
                 notes.push(data[i].note);
             }
             var chartdata = {
