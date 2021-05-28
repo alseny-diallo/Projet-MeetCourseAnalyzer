@@ -1,5 +1,10 @@
-/*authentification*/
-  let form = document.getElementById('formulaire');
+//authentification
+
+if(localStorage.getItem('content') !== "") {
+   document.body.innerHTML = content
+}
+
+  let form = document.getElementById('formulaire')
 
   form.addEventListener('submit', (e) => {
       let data = {
@@ -35,44 +40,4 @@
   .catch(error => console.error('Error:', error))
 })
 
-
-/*
-form.addEventListener("submit", sendData);
-
-function sendData() {
-    
-    let user = document.getElementById("email").value;
-    let mdp = document.getElementById("password").value;
-
-    let creds = {
-        username:user, 
-        password:mdp
-    };
-
-fetch('http://localhost:3000/auth', {
-        mode: 'cors',
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type':'application/json'
-        },
-    })
-    .then((reponse) => {
-        if (reponse.status!==200) {
-            console.log('ERREUR!'+reponse.status);
-        }else{
-            let content = response.json();
-                console.log(content);
-            }
-        })
-    
-
-    .then((result) => {
-        console.log(result);
-    })
-
-    .catch((error)=>{
-        console.log('ERREUR: ',error);
-    })
-}*/
+chrome.runtime.connect({ name: "popup" })

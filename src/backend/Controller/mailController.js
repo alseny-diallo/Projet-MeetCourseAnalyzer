@@ -1,32 +1,64 @@
-const app = require('express');
+//Controller mailing
 const nodemailer = require('nodemailer');
-const mailController = require('../Model/dbConnect');
-const router = app.Router();
+const smtpTransport = require('nodemailer-smtp-transport');
+const db = require('../Model/dbConnect');
+const controller = db.dbConnect;
+
 
 exports.sendMail = (req,res) => {
 
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
+//récupération des emails
+
+    let mail = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Document</title></head><body><h1>Bienvenue !</h1><div><p>Voici ci-dessous le lien vers le formulaire à remplir :</p><a href="https://formulairee.herokuapp.com/" target="_blank">formulaire d\'évaluation</a></div></body></html>'
+
+    let students = [];
+
+    controller.query('SELECT email FROM Etudiant', (err, result) => {
+
+      if (err) throw err;
+
+        if (result.length) {
+        //console.log(result);    
+            for(e in result){
+                students.push(result[e].email);
+            }
+        //console.log(students);       
+        } else {
+            console.log("ERREUR! "+err.message);
+        }
+        
+    }); 
+
+//fonctions d'envoi mails
+    let options = {
+        host: 'smtp.gmail.com',
+        port: 465,
+        secureConnection: true,
+        transportMethod: 'SMTP',
+        auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
-      }
-    });
-    
-    const mailOptions = {
+        }
+    }
+
+    let mailOptions = {
       from: process.env.MAIL_FROM,
-      to: 'alsenydiallo@esp.sn, madycamara@esp.sn, idrissasow@esp.sn',
-      subject: 'TestMailing',
-      text: 'Cà marche! mais bien evidemment!'
+      to: students,
+      subject: 'Formulaire d\'enquête! (avec recup mails bd) ',
+      html: mail
     };
+
+
+    let transporter = nodemailer.createTransport(smtpTransport(options));
+    
     
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.error("ECHEC D'ENVOI MAIL" + error);
+        console.error("ECHEC D'ENVOI MAIL: " + error.message);
       } else {
         console.log('ENVOI MAIL RÉUSSI! ' + info.response);
-
     }
+
 });
+
 }
-  
