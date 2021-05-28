@@ -1,19 +1,23 @@
-console.log('background running');
-chrome.runtime.onInstalled.addListener(function(){
-    alert("Merci d'avoir  mis à jour l'extension");
-    });
+//empecher le reload pendant utilisation
+chrome.runtime.onUpdateAvailable.addListener(function (details) {
+  chrome.runtime.reload();
+});
 
 let backgroundPage = chrome.extension.getBackgroundPage();
 
-chrome.runtime.onConnect.addListener(function(port) {
+chrome.runtime.onConnect.addListener(function (port) {
+  if (port.name === "popup") {
+    port.onDisconnect.addListener(function () {
+      let contentPage = document.body.innerHTML;
+      chrome.storage.sync.setItem({
+        content: contentPage
+      });
 
-    if (port.name === "popup") {
+      //chrome.runtime.sendMessage()
+      alert(contentPage);
 
-        port.onDisconnect.addListener(function() {
-            let contentPage = document.body.innerHTML
-            localStorage.setItem('content',contentPage)
-            backgroundPage.console.log(localStorage.getItem('content'))
-        })
-    }
-})
 
+      //backgroundPage.console.log(sessionStorage.getItem("content"));
+    });
+  }
+});

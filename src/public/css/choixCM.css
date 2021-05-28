@@ -1,25 +1,27 @@
-
 .hidden {
-    visibility: hidden;
-    display: none;
+	visibility: hidden;
+	display: none;
 }
 
 
 select option {
-  width:400px;
+	width: 400px;
 }
 
-h2{
-	text-align: center; 
+h2 {
+	text-align: center;
 	color: white;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #9400D3 !important;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+	background-color: #9400D3 !important;
 }
 
-.tableau{
-	margin-left:auto;
-  	margin-right:auto;
-  	width: 70%;
+.tableau {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
 }

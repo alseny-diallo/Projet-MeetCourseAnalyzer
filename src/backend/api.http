@@ -1,1 +1,1 @@
-GET http://localhost:3000/mailing
+GET http://localhost:3000/authAPI/savechoice
