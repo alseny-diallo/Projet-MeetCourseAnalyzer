@@ -1,0 +1,55 @@
+*{
+	margin:0px;
+	box-sizing: border-box;
+} 
+
+.tableau{
+	margin-left:auto;
+  margin-right:auto;
+  width: 70%;
+}
+
+nav
+{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+nav ul
+{
+    list-style-type: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-right: 1px;
+}
+
+nav a
+{
+    font-size: 1.3em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #7c4b28;
+    border-bottom: 3px solid #760001;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+
+body {
+    background-image: url("ordi.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
