@@ -1,0 +1,5 @@
+La Documentation pour l’installation de l’ensemble en une seule commande.
+Si vous avez node vous pouvez installer notre package :
+	npm install gmca
+gmca pour google meet course analyser dans le node_modules vous y trouverez 
+un fichier installation
