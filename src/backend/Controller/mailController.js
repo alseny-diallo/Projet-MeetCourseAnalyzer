@@ -36,8 +36,8 @@ exports.sendMail = (req,res) => {
         secureConnection: true,
         transportMethod: 'SMTP',
         auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS
         }
     }
 
