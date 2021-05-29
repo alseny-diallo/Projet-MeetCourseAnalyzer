@@ -167,8 +167,8 @@ function listLoginEvents(auth) {
         }
         trouve = false;
       });
-      console.log(seance);
-      console.log(participants);
+      //console.log(seance);
+      //console.log(participants);
     } else {
       console.log('Pas de meet trouvé.');
     }

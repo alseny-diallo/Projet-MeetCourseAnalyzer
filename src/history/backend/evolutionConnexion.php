@@ -1,5 +1,8 @@
 <?php
     include('./evolutionSeance.php');
-    $req ="SELECT idEtudiant,nom,prenom,nombreDeconnexion FROM Etudiant;";
-    dataChart($req);
+    include('./session.php');
+    if (!empty($classe) and !empty($matiere)){
+        $req ="SELECT idEtudiant,nom,prenom,nombreDeconnexion FROM Participant;";
+        dataChart($req);
+    }
 ?>

@@ -1,15 +1,13 @@
-
 .hidden {
-    visibility: hidden;
-    display: none;
+  visibility: hidden;
+  display: none;
 }
-
 
 select option {
-  width:400px;
+  width: 400px;
 }
 
-h2{
-	text-align: center; 
-	color: white;
+h2 {
+  text-align: center;
+  color: white;
 }

@@ -1,37 +1,44 @@
 {
-    "name" : "Google Meet Course Analyser",
-    "description" : "Il s’agit d’un plugin pour le navigateur google chrome, qui permettra, après authentification du professeur et du choix de la classe et de la matière, de détecter la liste des présents et alimenter la base de données pour la séance en cours",
-    "permissions" : ["tabs","storage", "webNavigation","webRequest","webRequestBlocking","*://localhost:*/*","*://*.meet.google.com/*"],
-    "manifest_version" : 2,
-    "version" : "1.0.0",
-    "author" : ["Mady CAMARA", "Idrissa SOW", "Alseny DIALLO", "Khadim FALL", "Emmanuel DIATTA"],
-    "background" : {
-        "scripts" : ["src/public/background/background.js"],
-        "persitent": true
-    },
-    "browser_action": {
-		"default_popup": "src/public/html/popup.html",
-		"default_title": "Google Meet Course Analyser"
-	},
-  	"icons": {
-		"16": "src/public/icons/icon16.png",
-		"48": "src/public/icons/icon48.png",
-		"128": "src/public/icons/icon128.png" 
-	},
-	"web_accessible_resources": [
-		"src/public/images/*permission.png"
-	],
-    "content_scripts": [
-        {
-            "matches": [
-                "*://localhost:*/*", "*://meet.google.com/*"
-            ],
-            "css": [
-                "src/public/css/main.css"
-            ],
-            "run_at": "document_idle",
-            "all_frames": false
-        }
-    ]
-    
+  "name": "Google Meet Course Analyser",
+  "description": "Il s’agit d’un plugin pour le navigateur google chrome, qui permettra, après authentification du professeur et du choix de la classe et de la matière, de détecter la liste des présents et alimenter la base de données pour la séance en cours",
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://stackpath.bootstrapcdn.com https://code.jquery.com https://cdn.jsdelivr.net 'unsafe-inline'; object-src 'self'",
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking",
+    "*://localhost:*/*",
+    "*://*.meet.google.com/*"
+  ],
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "author": [
+    "Mady CAMARA",
+    "Idrissa SOW",
+    "Alseny DIALLO",
+    "Khadim FALL",
+    "Emmanuel DIATTA"
+  ],
+  "background": {
+    "scripts": ["src/public/background/background.js"],
+    "persitent": true
+  },
+  "browser_action": {
+    "default_popup": "src/public/html/popup.html",
+    "default_title": "Google Meet Course Analyser"
+  },
+  "icons": {
+    "16": "src/public/icons/icon16.png",
+    "48": "src/public/icons/icon48.png",
+    "128": "src/public/icons/icon128.png"
+  },
+  "web_accessible_resources": ["src/public/images/*permission.png"],
+  "content_scripts": [{
+    "matches": ["*://localhost:*/*", "*://meet.google.com/*"],
+    "css": ["src/public/css/main.css"],
+    "js": ["src/public/js/listePresence.js", "src/public/js/content.js"],
+    "run_at": "document_idle",
+    "all_frames": false
+  }]
 }

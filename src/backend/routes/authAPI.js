@@ -1,8 +1,8 @@
-const express = require('express');
-const Controller = require('../authGoogle/controller');
+const express = require("express");
+const Controller = require("../authGoogle/controller");
 const router = express.Router();
-const db = require('../Model/dbConnect');
-const conn = db.dbConnect;                                                                                                                                                                                                                                                                                                                      
+const db = require("../Model/dbConnect");
+const conn = db.dbConnect;
 
 router.get('/api', Controller.listLoginEvents);
 
@@ -25,7 +25,13 @@ router.post('/save',(req, res) =>{
       for(let i = 0; i < participants.length; i++){
         conn.query('UPDATE Participant SET nombreConnexion = ?, nombreDeconnexion = ?, email = ?, region = ? WHERE nomComplet = ?', [participants[i].nbConnexion, participants[i].nbConnexion, participants[i].email, participants[i].region, participants[i].nomComplet], (err, result) => {
           if (err) throw err;
-          console.log(result);    
+          if (results.length) {
+            console.log(results);
+            return res.status(200);
+          } else {
+            console.log(results);
+            return res.status(404);
+          }
         });
       }
     }
@@ -46,7 +52,6 @@ router.post('/saveMatiereEtClasse', (req, res) => {
 router.post('/saveListePresence', (req, res) => {
   let idSeance;
   let classeSeance; 
-  let matiereSeance; 
   let idParticipant;
   let trouve = false;
   if(req.body){
@@ -105,5 +110,11 @@ router.post('/saveListePresence', (req, res) => {
     });
   }
 });
+
+router.get("/savechoice", (req, res) => {
+  console.log("wassup")
+  res.send("working!!!!")
+})
+
 
 module.exports = router
