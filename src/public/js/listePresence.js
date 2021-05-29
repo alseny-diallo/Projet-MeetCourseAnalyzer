@@ -24,19 +24,20 @@ console.log("Classe : "+classe);
 console.log("Matiere : "+matiere);
 
 function liste(){ //le code pour la liste des participants
-	let particicants = document.getElementsByClassName('ZjFb7c');
+	let participants = document.getElementsByClassName('ZjFb7c');
 	let aff = "";
-    for(let i = 0; i < particicants.length; i++){
-        aff += '<option value="'+i+'">'+particicants[i].innerText+'</option>'+;
+    for(let i = 0; i < participants.length; i++){
+        aff += '<option value="'+i+'">'+participants[i].innerText+'</option>';
     }
+    console.log(aff);
   	let tableList = "";
-  	tableList += "<select class='form-select' size='20' aria-label='size 3 select example' style='width: 100%; margin-left:auto; margin-right:auto;'>"+aff"+</select>";
+  	tableList += "<select class='form-select' size='20' aria-label='size 3 select example' style='width: 100%; margin-left:auto; margin-right:auto;'>"+aff+"</select>";
   	document.getElementById('list').innerHTML = tableList;
 
 }
 
 function refresh(){
-//le code pour rafraichir
+	//le code pour rafraichir
 	liste();
 }
 

@@ -6,9 +6,8 @@ let participant = Object();
 let participants = [];
 let events;
 let trouve = false;
-let monCredentials;
+let monCredentials
 let url;
-//let connection = require("../Model/dbConnect");
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/admin.reports.audit.readonly', 'https://www.googleapis.com/auth/admin.reports.usage.readonly'];
@@ -18,7 +17,7 @@ const SCOPES = ['https://www.googleapis.com/auth/admin.reports.audit.readonly', 
 const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
+fs.readFile('../credentials.json', (err, content) => {
   if (err) return console.error('Error loading client secret file', err);
 
   // Authorize a client with the loaded credentials, then call the
@@ -91,11 +90,7 @@ function storeToken(token) {
   });
 }
 
-/**
- * Lists the last 10 login events for the domain.
- *
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
+
 function listLoginEvents(auth) {
   const service = google.admin({version: 'reports_v1', auth});
   service.activities.list({
@@ -104,13 +99,12 @@ function listLoginEvents(auth) {
     eventName: 'call_ended',
   }, (err, res) => {
     if (err){
-      //Dans le cas ou le token expire je le supprime 
       if(err.message === 'No refresh token is set.'){
         console.log('Token danan a renouvener');
-        // suppression du token
+
         fs.unlink(`${TOKEN_PATH}`, (err) => {
           if(err) return console.log('impossible');
-          // On redemande l'accès 
+
           authorize(monCredentials, listLoginEvents);
         });
         console.log('le fichier token a ete supprimer avec succes');
@@ -120,7 +114,6 @@ function listLoginEvents(auth) {
     const activities = res.data.items;
     const premier = activities[0].events[0];
     if (activities.length) {
-      //Recuperation de la derniere conference
       seance.partage = false;  
       seance.dateFin = filtreDateHeureFin(activities[0].id.time, 'date');
       seance.heureFin = filtreDateHeureFin(activities[0].id.time, 'heure');
@@ -133,7 +126,7 @@ function listLoginEvents(auth) {
         events = activity.events[0];
         participant.nbConnexion = 1;
         participant.duree = 0;
-        //Recuperation du participant
+
         for(let i = 0; i < events.parameters.length; i++){
           if(events.parameters[i].name === 'conference_id'){
             participant.conference = events.parameters[i].value;
@@ -156,13 +149,12 @@ function listLoginEvents(auth) {
           if(events.parameters[i].name === 'location_region'){
             participant.region = events.parameters[i].value;
           }
-          //Si le participant a partager son ecran 
+
           if(events.parameters[i].name === 'video_send_seconds' && participant.conference === seance.id && events.parameters[i].intValue > 0){
             console.log(events.parameters[i].intValue);
             seance.partage = true;
           }
         }
-        //Si le participant existe deja on modifie son nombre et sa duree de connexion
         for(let j = 0; j < participants.length; j++){
           if(participants[j].conference === participant.conference && participants[j].email === participant.email){
             trouve = true;
@@ -183,32 +175,19 @@ function listLoginEvents(auth) {
    });
 }
 
-/**
- * Fonction pour recuperer les participants
- * @param {chaine} conference identifiant de la connexion
- * @param {entier} nbConnexion nombre de connexion deconnexion sur le meme meet
- * @param {chaine} IdConnexion identifiant de la connexion
- * @param {entier} duree le temps total passee sur le meet (en seconde)
- * @param {chaine} terminal le type de terminal utilise
- * @param {chaine} email adresse email utilise
- * @param {chaine} region la region de connexion
- */
+
 function ajoutParticipant(conference, nom, nbConnexion, IdConnexion, duree, terminal, email, region){
   participants.push({conference, nom, nbConnexion, IdConnexion, duree, terminal, email, region});
 }
 
-/**
- * Fonction pour recuperer la date ou l'heure de fin
- * @param {chaine} date date et l'heure de fin envoye par l'api
- * @param {chaine} quoi qu'est ce que je dois envoye?
- */
+
 function filtreDateHeureFin(date, quoi){
   if(quoi === 'date')
     return date.slice(0, 10);
   else
     return date.slice(11, date.length-1);
 }
-// Exportation des fonctions et variable
+
 module.exports = {
   SCOPES,
   listLoginEvents,
@@ -219,4 +198,3 @@ module.exports = {
   url
 };
 
-//eventName: 'livestream_watched'
